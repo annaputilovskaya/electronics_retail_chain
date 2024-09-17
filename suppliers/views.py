@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import filters
 from rest_framework.viewsets import ModelViewSet
 
@@ -7,9 +9,31 @@ from suppliers.serializers import OrganizationSerializer
 from users.permissions import IsActiveUser
 
 
+@method_decorator(
+    name="list",
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер списка организаций с постраничным выводом."
+    ),
+)
+@method_decorator(
+    name="create",
+    decorator=swagger_auto_schema(operation_description="Контроллер создания организации."),
+)
+@method_decorator(
+    name="update",
+    decorator=swagger_auto_schema(operation_description="Контроллер изменения организации."),
+)
+@method_decorator(
+    name="partial_update",
+    decorator=swagger_auto_schema(operation_description="Контроллер изменения организации."),
+)
+@method_decorator(
+    name="destroy",
+    decorator=swagger_auto_schema(operation_description="Контроллер удаления организации."),
+)
 class OrganizationViewSet(ModelViewSet):
     """
-    Контроллер создания новой организации.
+    Контроллер организации.
     """
     serializer_class = OrganizationSerializer
     queryset = Organization.objects.all()

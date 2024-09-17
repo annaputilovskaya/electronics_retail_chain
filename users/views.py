@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.viewsets import ModelViewSet
 
@@ -6,9 +8,31 @@ from users.permissions import IsActiveUser
 from users.serializers import UserSerializer
 
 
+@method_decorator(
+    name="list",
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер списка пользователей."
+    ),
+)
+@method_decorator(
+    name="create",
+    decorator=swagger_auto_schema(operation_description="Контроллер создания пользователя."),
+)
+@method_decorator(
+    name="update",
+    decorator=swagger_auto_schema(operation_description="Контроллер изменения пользователя."),
+)
+@method_decorator(
+    name="partial_update",
+    decorator=swagger_auto_schema(operation_description="Контроллер изменения пользователя."),
+)
+@method_decorator(
+    name="destroy",
+    decorator=swagger_auto_schema(operation_description="Контроллер удаления пользователя."),
+)
 class UserViewSet(ModelViewSet):
     """
-    Контроллер пользователей.
+    Контроллер пользователя.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
