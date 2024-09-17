@@ -2,16 +2,9 @@ from rest_framework import filters
 from rest_framework.viewsets import ModelViewSet
 
 from suppliers.models import Organization
+from suppliers.paginators import OrganizationPaginator
 from suppliers.serializers import OrganizationSerializer
 from users.permissions import IsActiveUser
-
-
-# class ContactsViewSet(ModelViewSet):
-#     """
-#     Контроллер контактов организации.
-#     """
-#     queryset = Contacts.objects.all()
-#     serializer_class = ContactsSerializer
 
 
 class OrganizationViewSet(ModelViewSet):
@@ -21,6 +14,7 @@ class OrganizationViewSet(ModelViewSet):
     serializer_class = OrganizationSerializer
     queryset = Organization.objects.all()
     permission_classes = (IsActiveUser,)
+    pagination_class = OrganizationPaginator
     filter_backends = (filters.SearchFilter,)
     search_fields = ("contacts__country",)
 

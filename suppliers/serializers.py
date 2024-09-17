@@ -3,6 +3,7 @@ from rest_framework.serializers import ModelSerializer
 
 from products.serializers import ProductSerializer
 from suppliers.models import Contacts, Organization
+from suppliers.validators import SupplierValidator, DebtValidator
 
 
 class ContactsSerializer(ModelSerializer):
@@ -26,3 +27,7 @@ class OrganizationSerializer(WritableNestedModelSerializer):
         model = Organization
         fields = "__all__"
         read_only_fields = ('hierarchy_level', 'debt', 'created_at')
+        validators = [
+            SupplierValidator(),
+            DebtValidator(),
+        ]
