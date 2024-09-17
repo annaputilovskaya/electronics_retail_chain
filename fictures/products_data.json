@@ -1,0 +1,12 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "organization": 2,
+      "name": "TV",
+      "model": "Lampa4",
+      "launched_at": "2019-08-24"
+    }
+  }
+]

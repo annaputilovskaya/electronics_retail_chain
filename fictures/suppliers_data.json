@@ -1,0 +1,122 @@
+[
+  {
+    "model": "suppliers.organization",
+    "pk": 1,
+    "fields": {
+      "name": "ИП Смит",
+      "organization_type": "individual",
+      "supplier": 2,
+      "hierarchy_level": 1,
+      "debt": "0.00",
+      "created_at": "2024-09-16"
+    }
+  },
+  {
+    "model": "suppliers.organization",
+    "pk": 2,
+    "fields": {
+      "name": "Московский завод",
+      "organization_type": "factory",
+      "supplier": null,
+      "hierarchy_level": 0,
+      "debt": "0.00",
+      "created_at": "2024-09-16"
+    }
+  },
+  {
+    "model": "suppliers.organization",
+    "pk": 3,
+    "fields": {
+      "name": "МВидео",
+      "organization_type": "retail",
+      "supplier": 2,
+      "hierarchy_level": 1,
+      "debt": "0.00",
+      "created_at": "2024-09-16"
+    }
+  },
+  {
+    "model": "suppliers.organization",
+    "pk": 4,
+    "fields": {
+      "name": "ИП Иванов",
+      "organization_type": "individual",
+      "supplier": 3,
+      "hierarchy_level": 2,
+      "debt": "0.00",
+      "created_at": "2024-09-16"
+    }
+  },
+  {
+    "model": "suppliers.organization",
+    "pk": 5,
+    "fields": {
+      "name": "Огоромный завод",
+      "organization_type": "factory",
+      "supplier": null,
+      "hierarchy_level": 0,
+      "debt": "0.00",
+      "created_at": "2024-09-16"
+    }
+  },
+  {
+    "model": "suppliers.contacts",
+    "pk": 1,
+    "fields": {
+      "organization": 1,
+      "email": "user@example.com",
+      "country": "США",
+      "city": "Вашингтон",
+      "street": "string",
+      "house": "string"
+    }
+  },
+  {
+    "model": "suppliers.contacts",
+    "pk": 2,
+    "fields": {
+      "organization": 2,
+      "email": "user@example.com",
+      "country": "Россия",
+      "city": "Москва",
+      "street": "string",
+      "house": "string"
+    }
+  },
+  {
+    "model": "suppliers.contacts",
+    "pk": 3,
+    "fields": {
+      "organization": 3,
+      "email": "user@example.com",
+      "country": "Россия",
+      "city": "Москва",
+      "street": "string",
+      "house": "string"
+    }
+  },
+  {
+    "model": "suppliers.contacts",
+    "pk": 4,
+    "fields": {
+      "organization": 4,
+      "email": "user@example.com",
+      "country": "Россия",
+      "city": "Москва",
+      "street": "string",
+      "house": "string"
+    }
+  },
+  {
+    "model": "suppliers.contacts",
+    "pk": 5,
+    "fields": {
+      "organization": 5,
+      "email": "user@example.com",
+      "country": "Китай",
+      "city": "Пекин",
+      "street": "string",
+      "house": "string"
+    }
+  }
+]
