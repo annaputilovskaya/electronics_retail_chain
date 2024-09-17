@@ -16,24 +16,33 @@ from users.serializers import UserSerializer
 )
 @method_decorator(
     name="create",
-    decorator=swagger_auto_schema(operation_description="Контроллер создания пользователя."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер создания пользователя."
+    ),
 )
 @method_decorator(
     name="update",
-    decorator=swagger_auto_schema(operation_description="Контроллер изменения пользователя."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер изменения пользователя."
+    ),
 )
 @method_decorator(
     name="partial_update",
-    decorator=swagger_auto_schema(operation_description="Контроллер изменения пользователя."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер изменения пользователя."
+    ),
 )
 @method_decorator(
     name="destroy",
-    decorator=swagger_auto_schema(operation_description="Контроллер удаления пользователя."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер удаления пользователя."
+    ),
 )
 class UserViewSet(ModelViewSet):
     """
     Контроллер пользователя.
     """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from suppliers.models import Organization, Contacts
+from suppliers.models import Contacts, Organization
 from users.models import User
 
 
@@ -10,6 +10,7 @@ class OrganizationTestCase(APITestCase):
     """
     Тестирование модели организации.
     """
+
     def setUp(self):
         """
         Создание пользователя, организации и контактов
@@ -18,26 +19,26 @@ class OrganizationTestCase(APITestCase):
 
         self.user1 = User.objects.create(email="user1@example.com")
         self.organization1 = Organization.objects.create(
-            name='Test Organization 1',
-            organization_type='factory',
-            )
+            name="Test Organization 1",
+            organization_type="factory",
+        )
         self.organization2 = Organization.objects.create(
-            name='Test Organization 2',
-            organization_type='retail',
+            name="Test Organization 2",
+            organization_type="retail",
             supplier=self.organization1,
-            )
+        )
         self.contacts1 = Contacts.objects.create(
-            country='Test Country',
-            city='Test City',
-            street='Test Street',
-            house='123',
+            country="Test Country",
+            city="Test City",
+            street="Test Street",
+            house="123",
             organization=self.organization1,
         )
         self.contacts2 = Contacts.objects.create(
-            country='Test Country',
-            city='Test City',
-            street='Test Street',
-            house='123',
+            country="Test Country",
+            city="Test City",
+            street="Test Street",
+            house="123",
             organization=self.organization2,
         )
 
@@ -85,7 +86,7 @@ class OrganizationTestCase(APITestCase):
         data = [
             {"name": "Organ"},
             {"debt": 100},
-            ]
+        ]
 
         # Тестируем корректное изменениие информации об организации.
         response = self.client.patch(url, data[0])

@@ -9,22 +9,47 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('suppliers', '0001_initial'),
+        ("suppliers", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Название продукта')),
-                ('model', models.CharField(max_length=255, verbose_name='Модель продукта')),
-                ('launched_at', models.DateField(verbose_name='Дата выхода продукта на рынок')),
-                ('organization', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='suppliers.organization', verbose_name='Организация')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=100, verbose_name="Название продукта"),
+                ),
+                (
+                    "model",
+                    models.CharField(max_length=255, verbose_name="Модель продукта"),
+                ),
+                (
+                    "launched_at",
+                    models.DateField(verbose_name="Дата выхода продукта на рынок"),
+                ),
+                (
+                    "organization",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="products",
+                        to="suppliers.organization",
+                        verbose_name="Организация",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Продукт',
-                'verbose_name_plural': 'Продукты',
+                "verbose_name": "Продукт",
+                "verbose_name_plural": "Продукты",
             },
         ),
     ]

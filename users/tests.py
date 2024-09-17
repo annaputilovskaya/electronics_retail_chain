@@ -24,5 +24,3 @@ class UserTestCase(APITestCase):
         user = User.objects.get(email="user2@example.com")
         self.assertTrue(user.check_password("test123"))
         self.assertTrue(user.is_active)
-
-

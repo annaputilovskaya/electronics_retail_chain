@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from products.models import Product
-from suppliers.models import Organization, Contacts
+from suppliers.models import Contacts, Organization
 from users.models import User
 
 
@@ -11,6 +11,7 @@ class ProductTestCase(APITestCase):
     """
     Тестирование модели продукта.
     """
+
     def setUp(self):
         """
         Создание пользователя, организации, контактов и продуктов
@@ -19,27 +20,27 @@ class ProductTestCase(APITestCase):
 
         self.user1 = User.objects.create(email="user1@example.com")
         self.organization = Organization.objects.create(
-            name='Test Organization',
-            organization_type='individual',
-            )
+            name="Test Organization",
+            organization_type="individual",
+        )
         self.contacts = Contacts.objects.create(
-            country='Test Country',
-            city='Test City',
-            street='Test Street',
-            house='123',
+            country="Test Country",
+            city="Test City",
+            street="Test Street",
+            house="123",
             organization=self.organization,
         )
         self.product = Product.objects.create(
             name="Test Product",
             model=100,
-            launched_at='2022-01-01',
-            organization=self.organization
+            launched_at="2022-01-01",
+            organization=self.organization,
         )
         self.product2 = Product.objects.create(
             name="Test Product",
             model=100,
-            launched_at='2022-01-01',
-            organization=self.organization
+            launched_at="2022-01-01",
+            organization=self.organization,
         )
         self.client.force_authenticate(user=self.user1)
 
@@ -61,14 +62,14 @@ class ProductTestCase(APITestCase):
                 "model": 200,
                 "launched_at": "2022-02-01",
                 "organization": self.organization.pk,
-                },
+            },
             {
                 "name": "Test Product 3",
                 "model": 200,
                 "launched_at": "2122-02-01",
                 "organization": self.organization.pk,
-                },
-            ]
+            },
+        ]
         # Тестируем корректное создание продукта
         response = self.client.post(url, data=data[0])
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -79,7 +80,8 @@ class ProductTestCase(APITestCase):
         message = response.json()["non_field_errors"]
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(
-            message, ["Дата выхода продукта на рынок не может быть позднее текущей даты."]
+            message,
+            ["Дата выхода продукта на рынок не может быть позднее текущей даты."],
         )
 
     def test_product_update(self):
@@ -92,7 +94,9 @@ class ProductTestCase(APITestCase):
         }
         response = self.client.patch(url, data=data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(Product.objects.get(pk=self.product.pk).name, "Updated Test Product")
+        self.assertEqual(
+            Product.objects.get(pk=self.product.pk).name, "Updated Test Product"
+        )
 
     def test_product_delete(self):
         """

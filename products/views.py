@@ -16,24 +16,33 @@ from users.permissions import IsActiveUser
 )
 @method_decorator(
     name="create",
-    decorator=swagger_auto_schema(operation_description="Контроллер создания продукта."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер создания продукта."
+    ),
 )
 @method_decorator(
     name="update",
-    decorator=swagger_auto_schema(operation_description="Контроллер изменения продукта."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер изменения продукта."
+    ),
 )
 @method_decorator(
     name="partial_update",
-    decorator=swagger_auto_schema(operation_description="Контроллер изменения продукта."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер изменения продукта."
+    ),
 )
 @method_decorator(
     name="destroy",
-    decorator=swagger_auto_schema(operation_description="Контроллер удаления продукта."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер удаления продукта."
+    ),
 )
 class ProductViewSet(ModelViewSet):
     """
     Контроллер продукта.
     """
+
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = (IsActiveUser,)

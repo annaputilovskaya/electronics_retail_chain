@@ -19,10 +19,16 @@ class Organization(models.Model):
         max_length=50, choices=ORGANIZATION_TYPE_CHOICES, verbose_name="Тип организации"
     )
 
-    supplier = models.ForeignKey("self", **NULLABLE, on_delete=models.SET_NULL, verbose_name="Поставщик")
-    hierarchy_level = models.SmallIntegerField(**NULLABLE, default=0, verbose_name="Уровень иерархии")
+    supplier = models.ForeignKey(
+        "self", **NULLABLE, on_delete=models.SET_NULL, verbose_name="Поставщик"
+    )
+    hierarchy_level = models.SmallIntegerField(
+        **NULLABLE, default=0, verbose_name="Уровень иерархии"
+    )
 
-    debt = models.DecimalField(max_digits=16, decimal_places=2, default=0, verbose_name="Задолженность")
+    debt = models.DecimalField(
+        max_digits=16, decimal_places=2, default=0, verbose_name="Задолженность"
+    )
     created_at = models.DateField(auto_now_add=True, verbose_name="Дата создания")
 
     class Meta:
@@ -30,15 +36,19 @@ class Organization(models.Model):
         verbose_name_plural = "Организации"
 
     def __str__(self):
-        return f'{self.name}'
+        return f"{self.name}"
 
 
 class Contacts(models.Model):
     """
     Модель контактов организации.
     """
+
     organization = models.OneToOneField(
-        Organization, related_name="contacts", on_delete=models.CASCADE, verbose_name="Организация"
+        Organization,
+        related_name="contacts",
+        on_delete=models.CASCADE,
+        verbose_name="Организация",
     )
     email = models.EmailField(**NULLABLE, verbose_name="Электронная почта")
     country = models.CharField(max_length=100, verbose_name="Страна")
@@ -51,4 +61,6 @@ class Contacts(models.Model):
         verbose_name_plural = "Контакты"
 
     def __str__(self):
-        return f"{self.email}; {self.country}, {self.city}, {self.street}, {self.house}."
+        return (
+            f"{self.email}; {self.country}, {self.city}, {self.street}, {self.house}."
+        )

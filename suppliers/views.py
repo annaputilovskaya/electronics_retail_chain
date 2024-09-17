@@ -17,24 +17,33 @@ from users.permissions import IsActiveUser
 )
 @method_decorator(
     name="create",
-    decorator=swagger_auto_schema(operation_description="Контроллер создания организации."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер создания организации."
+    ),
 )
 @method_decorator(
     name="update",
-    decorator=swagger_auto_schema(operation_description="Контроллер изменения организации."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер изменения организации."
+    ),
 )
 @method_decorator(
     name="partial_update",
-    decorator=swagger_auto_schema(operation_description="Контроллер изменения организации."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер изменения организации."
+    ),
 )
 @method_decorator(
     name="destroy",
-    decorator=swagger_auto_schema(operation_description="Контроллер удаления организации."),
+    decorator=swagger_auto_schema(
+        operation_description="Контроллер удаления организации."
+    ),
 )
 class OrganizationViewSet(ModelViewSet):
     """
     Контроллер организации.
     """
+
     serializer_class = OrganizationSerializer
     queryset = Organization.objects.all()
     permission_classes = (IsActiveUser,)
@@ -48,7 +57,7 @@ class OrganizationViewSet(ModelViewSet):
         при создании организации.
         """
         organization = serializer.save()
-        if organization.organization_type == 'factory':
+        if organization.organization_type == "factory":
             organization.hierarchy_level = 0
         elif organization.supplier:
             supplier_id = organization.supplier.id
@@ -64,7 +73,7 @@ class OrganizationViewSet(ModelViewSet):
         при изменении информации организации.
         """
         organization = serializer.save()
-        if organization.organization_type == 'factory':
+        if organization.organization_type == "factory":
             organization.hierarchy_level = 0
         elif organization.supplier:
             supplier_id = organization.supplier.id

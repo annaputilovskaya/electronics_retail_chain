@@ -7,7 +7,13 @@ class Product(models.Model):
     """
     Модель продукта организации.
     """
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name="products", verbose_name='Организация')
+
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+        related_name="products",
+        verbose_name="Организация",
+    )
     name = models.CharField(max_length=100, verbose_name="Название продукта")
     model = models.CharField(max_length=255, verbose_name="Модель продукта")
     launched_at = models.DateField(verbose_name="Дата выхода продукта на рынок")

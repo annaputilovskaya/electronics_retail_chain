@@ -18,14 +18,16 @@ class OrganizationAdmin(admin.ModelAdmin):
         "id",
         "name",
         "organization_type",
-        'view_supplier_link',
-        'debt',
-        'view_contacts__city',
-        'hierarchy_level'
-        ]
-    readonly_fields = ['debt', 'hierarchy_level']
+        "view_supplier_link",
+        "debt",
+        "view_contacts__city",
+        "hierarchy_level",
+    ]
+    readonly_fields = ["debt", "hierarchy_level"]
     actions = [clear_debt]
-    list_filter = ['contacts__city',]
+    list_filter = [
+        "contacts__city",
+    ]
 
     def view_supplier_link(self, organization):
         """
@@ -34,9 +36,14 @@ class OrganizationAdmin(admin.ModelAdmin):
         supplier = organization.supplier
         if supplier:
             display_text = "<a href={}>{}</a>".format(
-                reverse('admin:{}_{}_change'.format(
-                    organization._meta.app_label, organization._meta.model_name),
-                        args=(supplier.pk,)), supplier.name)
+                reverse(
+                    "admin:{}_{}_change".format(
+                        organization._meta.app_label, organization._meta.model_name
+                    ),
+                    args=(supplier.pk,),
+                ),
+                supplier.name,
+            )
             if display_text:
                 return mark_safe(display_text)
             return "-"
